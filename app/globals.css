@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.container-narrow {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.brand-underline {
+  background-image: linear-gradient(90deg, #a16e42, #a16e42);
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
+
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #a16e42;
+}
+.divider-ornament::before,
+.divider-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e5e5;
+}
+
+::selection {
+  background: #e4b080;
+  color: #1a1a1a;
+}
+
+/* Ghana Cedi (₵) — Inter often renders a missing-glyph box; Noto Sans has it. */
+.cedi {
+  font-family: var(--font-cedi), "Noto Sans", "Segoe UI Symbol", "Arial Unicode MS",
+    sans-serif;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.01em;
+}

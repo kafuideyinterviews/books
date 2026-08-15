@@ -1,0 +1,46 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+
+# production
+build
+dist
+
+# env — never commit secrets; examples are OK
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# debug / OS
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+*.pem
+
+# typescript
+next-env.d.ts
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# next-pwa build output
+public/sw.js
+public/sw.js.map
+public/workbox-*.js
+public/workbox-*.js.map
+public/swe-worker-*.js
+public/swe-worker-*.js.map
+
+# IDE
+.idea
+.vscode
+*.swp
