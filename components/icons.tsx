@@ -88,9 +88,15 @@ export function PenIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
       <path
-        d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5Z"
+        d="M12 19.5h9"
         stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+      />
+      <path
+        d="M16.8 3.6a2.2 2.2 0 0 1 3.1 3.1L8.2 18.4l-4.1 1.1 1.1-4.1L16.8 3.6Z"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -102,11 +108,31 @@ export function TruckIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
       <path
-        d="M1 4h14v12H1V4Zm14 4h4l3 4v4h-7M5.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm12 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+        d="M1.5 4.5h13.5v11H1.5v-11Z"
         stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 8.5h3.8L22 12.2V15.5h-7"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+      <circle
+        cx="6"
+        cy="18.5"
+        r="2"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+      />
+      <circle
+        cx="18"
+        cy="18.5"
+        r="2"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
       />
     </svg>
   );
@@ -119,10 +145,10 @@ export function BookmarkIcon({
   return (
     <svg {...base(props)}>
       <path
-        d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1Z"
+        d="M6.5 3.5h11a1 1 0 0 1 1 1V20.5l-6.5-3.6-6.5 3.6V4.5a1 1 0 0 1 1-1Z"
         fill={filled ? "currentColor" : "none"}
         stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.5}
+        strokeWidth={props.strokeWidth ?? 1.75}
         strokeLinejoin="round"
       />
     </svg>

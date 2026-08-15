@@ -9,7 +9,6 @@ import {
   BookOpenIcon,
   BookmarkIcon,
   PenIcon,
-  PlayIcon,
   TruckIcon,
 } from "@/components/icons";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_KEYWORDS } from "@/lib/seo";
@@ -43,11 +42,6 @@ const valueProps = [
     title: "Save for later",
     body: "Shortlist titles without an account — they stay on this device.",
     Icon: BookmarkIcon,
-  },
-  {
-    title: "Read alongside",
-    body: "Every book links to Kafui's on-camera interviews and features.",
-    Icon: PlayIcon,
   },
 ];
 
@@ -120,20 +114,25 @@ export default async function HomePage() {
 
       {/* Value proposition strip */}
       <section className="border-y border-line bg-white">
-        <div className="container-narrow py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {valueProps.map(({ title, body, Icon }) => (
-            <div key={title} className="flex gap-3 items-start">
-              <div className="text-copper-dark shrink-0 mt-0.5">
-                <Icon size={22} />
-              </div>
-              <div>
-                <p className="font-semibold text-sm text-ink">{title}</p>
-                <p className="text-xs text-ink-muted leading-relaxed mt-0.5">
+        <div className="container-narrow py-12 sm:py-14">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 max-w-5xl mx-auto">
+            {valueProps.map(({ title, body, Icon }) => (
+              <div
+                key={title}
+                className="flex flex-col items-center text-center px-2"
+              >
+                <div className="mb-4 text-bronze-dark">
+                  <Icon size={34} strokeWidth={1.75} />
+                </div>
+                <p className="font-display text-xl sm:text-[1.35rem] font-semibold text-ink leading-snug">
+                  {title}
+                </p>
+                <p className="text-[15px] sm:text-base text-ink-muted leading-relaxed mt-2 max-w-[280px]">
                   {body}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
