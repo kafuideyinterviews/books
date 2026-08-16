@@ -1,46 +1,46 @@
+import type { LucideProps } from "lucide-react";
+import {
+  ArrowRight,
+  Bookmark,
+  BookOpen,
+  ChevronDown,
+  ExternalLink,
+  Globe,
+  Mail,
+  Megaphone,
+  Mic,
+  PenLine,
+  Play,
+  Quote,
+  Search,
+  Shield,
+  Star,
+  Store,
+  Truck,
+  MicVocal,
+} from "lucide-react";
+
 type IconProps = {
   size?: number;
   className?: string;
   strokeWidth?: number;
 };
 
-function base({ size = 16, className }: IconProps) {
+function lucideProps({ size = 16, className, strokeWidth }: IconProps): LucideProps {
   return {
-    width: size,
-    height: size,
-    viewBox: "0 0 24 24",
-    fill: "none" as const,
+    size,
     className,
-    "aria-hidden": true as const,
+    strokeWidth: strokeWidth ?? 1.75,
+    "aria-hidden": true,
   };
 }
 
 export function ArrowRightIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M5 12h14M13 5l7 7-7 7"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <ArrowRight {...lucideProps(props)} />;
 }
 
 export function ExternalLinkIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M14 4h6v6M20 4l-9 9M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <ExternalLink {...lucideProps(props)} />;
 }
 
 export function StarIcon({
@@ -48,94 +48,27 @@ export function StarIcon({
   ...props
 }: IconProps & { filled?: boolean }) {
   return (
-    <svg {...base(props)}>
-      <path
-        d="m12 2.5 2.94 5.95 6.57.96-4.76 4.63 1.13 6.55L12 17.5l-5.88 3.09 1.13-6.55L2.5 9.41l6.56-.96L12 2.5Z"
-        fill={filled ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth={filled ? 0 : 1.5}
-        strokeLinejoin="round"
-      />
-    </svg>
+    <Star
+      {...lucideProps(props)}
+      fill={filled ? "currentColor" : "none"}
+    />
   );
 }
 
 export function QuoteIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M4 5h6v6H6.5c0 2.5 1 4 3.5 4.5V18c-4.5-.5-6-3.5-6-8V5Zm10 0h6v6h-3.5c0 2.5 1 4 3.5 4.5V18c-4.5-.5-6-3.5-6-8V5Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
+  return <Quote {...lucideProps(props)} />;
 }
 
 export function BookOpenIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M2 4c3-1 6-1 8 1v13c-2-2-5-2-8-1V4Zm20 0c-3-1-6-1-8 1v13c2-2 5-2 8-1V4Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.5}
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <BookOpen {...lucideProps(props)} />;
 }
 
 export function PenIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M12 19.5h9"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-      />
-      <path
-        d="M16.8 3.6a2.2 2.2 0 0 1 3.1 3.1L8.2 18.4l-4.1 1.1 1.1-4.1L16.8 3.6Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <PenLine {...lucideProps(props)} />;
 }
 
 export function TruckIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M1.5 4.5h13.5v11H1.5v-11Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15 8.5h3.8L22 12.2V15.5h-7"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle
-        cx="6"
-        cy="18.5"
-        r="2"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-      />
-      <circle
-        cx="18"
-        cy="18.5"
-        r="2"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-      />
-    </svg>
-  );
+  return <Truck {...lucideProps(props)} />;
 }
 
 export function BookmarkIcon({
@@ -143,289 +76,97 @@ export function BookmarkIcon({
   ...props
 }: IconProps & { filled?: boolean }) {
   return (
-    <svg {...base(props)}>
-      <path
-        d="M6.5 3.5h11a1 1 0 0 1 1 1V20.5l-6.5-3.6-6.5 3.6V4.5a1 1 0 0 1 1-1Z"
-        fill={filled ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinejoin="round"
-      />
-    </svg>
+    <Bookmark
+      {...lucideProps(props)}
+      fill={filled ? "currentColor" : "none"}
+    />
   );
 }
 
 export function PlayIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M17 3a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4h10Zm-7 6v6l5-3-5-3Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.5}
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Play {...lucideProps(props)} />;
 }
 
-/** Interview / conversation mic */
 export function MicIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M12 2a3.5 3.5 0 0 0-3.5 3.5v6a3.5 3.5 0 1 0 7 0v-6A3.5 3.5 0 0 0 12 2Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M9 21.5h6"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Mic {...lucideProps(props)} />;
 }
 
-/** Public speaking / address */
 export function SpeakIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M4 9.5c0-2.5 2.5-4.5 5.5-4.5H12v10H9.5C6.5 15 4 13 4 10.5v-1Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 5h1.5C17 5 20 7.2 20 10s-3 5-6.5 5H12"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8.5 15.5 7 21.5M15.5 15.5 17 21.5"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <Megaphone {...lucideProps(props)} />;
 }
 
-/** MC / event host — podium */
 export function PodiumIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M8 10.5h8l1.5 9.5H6.5L8 10.5Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M9.5 10.5V8.2A2.5 2.5 0 0 1 12 5.7a2.5 2.5 0 0 1 2.5 2.5v2.3"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-      />
-      <path
-        d="M7 14.5h10"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.75}
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <MicVocal {...lucideProps(props)} />;
 }
 
 export function ShieldIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M12 2 4 5.5V11c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5.5L12 2Zm-3 9.5 2.2 2.2L15.5 9.4"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Shield {...lucideProps(props)} />;
 }
 
 export function GlobeIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle
-        cx="12"
-        cy="12"
-        r="9"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-      />
-      <path
-        d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <Globe {...lucideProps(props)} />;
 }
 
 export function StoreIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="M4 7h16l-1 4a3 3 0 0 1-3 2.5A3 3 0 0 1 13 11a3 3 0 0 1-3 2.5A3 3 0 0 1 7 11a3 3 0 0 1-3 2.5L4 7Zm1-4h14l1 4H4l1-4Zm0 10.5V21h14v-7.5M9 21v-5h6v5"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Store {...lucideProps(props)} />;
 }
 
 export function MailIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <rect
-        x="3"
-        y="5"
-        width="18"
-        height="14"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-      />
-      <path
-        d="m4 7 8 6 8-6"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <Mail {...lucideProps(props)} />;
 }
 
 export function ChevronDownIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path
-        d="m6 9 6 6 6-6"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+  return <ChevronDown {...lucideProps(props)} />;
 }
 
 export function SearchIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle
-        cx="11"
-        cy="11"
-        r="7"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 2}
-      />
-      <path
-        d="m20 20-3.5-3.5"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 2}
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <Search {...lucideProps(props)} />;
 }
 
 export function CediSign({
-  size = 14,
+  size = 16,
   className,
 }: {
-  size?: number | string;
+  size?: number;
   className?: string;
 }) {
-  // Drawn as SVG so the ₵ glyph always renders (many UI fonts omit U+20B5).
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-      style={{ display: "inline-block", verticalAlign: "-0.12em" }}
+    <span
+      className={`cedi inline-flex items-center justify-center ${className ?? ""}`}
+      style={{ fontSize: size, lineHeight: 1 }}
+      aria-hidden
     >
-      <path
-        d="M16.2 6.2A6.5 6.5 0 0 0 7.8 6.2M16.2 17.8A6.5 6.5 0 0 1 7.8 17.8"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M5 10h13M5 14h13"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-    </svg>
+      GH&#8373;
+    </span>
   );
 }
 
 export function AmazonIcon(props: IconProps) {
   return (
-    <svg {...base(props)}>
-      <text
-        x="12"
-        y="13"
-        textAnchor="middle"
-        fontSize="13"
-        fontWeight="700"
-        fontFamily="Arial, sans-serif"
-        fill="currentColor"
-      >
-        a
-      </text>
-      <path
-        d="M5 16.5c4.5 3 9.5 3 14 0"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.8}
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="m19 16.5-.4-2m.4 2-2 .4"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.8}
-        strokeLinecap="round"
-        fill="none"
-      />
+    <svg
+      width={props.size ?? 16}
+      height={props.size ?? 16}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={props.className}
+      aria-hidden
+    >
+      <path d="M13.2 17.8c-2.1 1.55-5.15 2.37-7.78 2.37-3.68 0-7-1.36-9.51-3.63-.2-.18-.02-.42.21-.28 2.71 1.58 6.05 2.52 9.5 2.52 2.33 0 4.9-.49 7.26-1.49.36-.15.66.23.32.51zm1.43-3.28c-.3.42-.84.6-1.26.3-3.22-1.97-8.1-2.56-11.86-1.37-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.08-1.32 9.65-.66 13.43 1.62.42.24.54.79.23 1.19zm.12-3.35C12.18 8.4 5.9 8.16 2.3 9.28c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38C5.88 5.94 12.75 6.18 17.1 8.76c.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3l-.21-.05z" />
     </svg>
   );
 }
 
 export function SelarIcon(props: IconProps) {
   return (
-    <svg {...base(props)}>
-      <rect
-        x="3"
-        y="3"
-        width="18"
-        height="18"
-        rx="5"
-        stroke="currentColor"
-        strokeWidth={props.strokeWidth ?? 1.6}
-        fill="none"
-      />
+    <svg
+      width={props.size ?? 16}
+      height={props.size ?? 16}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={props.className}
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="10" opacity="0.15" />
       <text
         x="12"
         y="16.2"
@@ -441,7 +182,7 @@ export function SelarIcon(props: IconProps) {
   );
 }
 
-/** Large decorative open-book vector for hero / empty states. */
+/** Large decorative open-book vector for empty cover states. */
 export function OpenBookVector({
   className,
   size = 320,
@@ -458,25 +199,21 @@ export function OpenBookVector({
       className={className}
       aria-hidden="true"
     >
-      {/* Back cover */}
       <path
         d="M20 60c40-18 90-18 130 6 40-24 90-24 130-6v140c-40-18-90-18-130 6-40-24-90-24-130-6V60Z"
         fill="currentColor"
         opacity="0.08"
       />
-      {/* Left page */}
       <path
         d="M32 66c36-15 80-15 118 8v122c-38-23-82-23-118-8V66Z"
         fill="currentColor"
         opacity="0.14"
       />
-      {/* Right page */}
       <path
         d="M288 66c-36-15-80-15-118 8v122c38-23 82-23 118-8V66Z"
         fill="currentColor"
         opacity="0.14"
       />
-      {/* Page outlines */}
       <path
         d="M32 66c36-15 80-15 118 8 38-23 82-23 118-8M32 66v122c36-15 80-15 118 8V74M288 66v122c-36-15-80-15-118 8"
         stroke="currentColor"
@@ -484,14 +221,12 @@ export function OpenBookVector({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Spine */}
       <path
         d="M150 74v122"
         stroke="currentColor"
         strokeWidth="2.5"
         strokeLinecap="round"
       />
-      {/* Text lines left */}
       <path
         d="M52 92c22-7 46-8 66 0M52 112c22-7 46-8 66 0M52 132c22-7 46-8 66 0M52 152c16-5 32-6 46-2"
         stroke="currentColor"
@@ -499,7 +234,6 @@ export function OpenBookVector({
         strokeLinecap="round"
         opacity="0.55"
       />
-      {/* Text lines right */}
       <path
         d="M268 92c-22-7-46-8-66 0M268 112c-22-7-46-8-66 0M268 132c-22-7-46-8-66 0M268 152c-16-5-32-6-46-2"
         stroke="currentColor"
@@ -507,7 +241,6 @@ export function OpenBookVector({
         strokeLinecap="round"
         opacity="0.55"
       />
-      {/* Bookmark ribbon */}
       <path
         d="M226 70v46l8-7 8 7V72"
         stroke="currentColor"

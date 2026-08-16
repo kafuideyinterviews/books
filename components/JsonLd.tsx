@@ -100,8 +100,8 @@ export function BookJsonLd({
       name: "Kafui Dey",
     },
     publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
+      "@type": "Person",
+      name: "Kafui Dey",
     },
     inLanguage: "en",
   };

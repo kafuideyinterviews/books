@@ -31,7 +31,10 @@ const PRICE_MIN = 0;
 const PRICE_MAX = 500;
 
 function formatCedi(n: number) {
-  return new Intl.NumberFormat("en-GH", { maximumFractionDigits: 0 }).format(n);
+  return new Intl.NumberFormat("en-GH", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(n);
 }
 
 export default function BooksCatalog({

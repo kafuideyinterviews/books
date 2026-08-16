@@ -39,7 +39,8 @@ function formatAmount(
 ): string {
   if (currency === "GHS") {
     const n = new Intl.NumberFormat("en-GH", {
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     }).format(amount);
     return `GH₵ ${n}`;
   }
@@ -57,7 +58,8 @@ function formatAmount(
 
 export function formatGhsNumber(amount: number): string {
   return new Intl.NumberFormat("en-GH", {
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(amount);
 }
 

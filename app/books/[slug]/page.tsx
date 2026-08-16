@@ -157,17 +157,13 @@ export default async function BookDetailPage({ params }: PageProps) {
             <Price
               amountGhs={book.priceGhs}
               showBase
-              className="font-display text-3xl text-ink mb-2 block"
+              className="font-display text-3xl text-ink mb-8 block"
             />
           ) : book.priceDisplay ? (
-            <p className="font-display text-3xl text-ink mb-2">
+            <p className="font-display text-3xl text-ink mb-8">
               {book.priceDisplay}
             </p>
           ) : null}
-          <p className="text-xs text-ink-soft mb-8">
-            Prices auto-convert to your selected currency using live exchange
-            rates. Selar and Amazon list their own prices.
-          </p>
 
           {book.blurb && (
             <p className="text-ink-muted leading-relaxed mb-8 text-[15px]">
@@ -214,7 +210,7 @@ export default async function BookDetailPage({ params }: PageProps) {
             <span className="text-ink-muted">Language</span>
             <span className="text-ink">English</span>
             <span className="text-ink-muted">Publisher</span>
-            <span className="text-ink">Kafui Dey Books</span>
+            <span className="text-ink">Kafui Dey</span>
             {book.categories?.length ? (
               <>
                 <span className="text-ink-muted">Category</span>
