@@ -345,8 +345,16 @@ export default function Header() {
             Kafui Dey Interviews
             <ExternalLinkIcon size={14} />
           </a>
+        </nav>
 
-          <div className="mt-6 flex items-center gap-3 md:hidden">
+        <div className="shrink-0 border-t border-white/10 px-8 sm:px-10 md:px-14 pt-5 pb-4 max-w-2xl md:max-w-3xl w-full mx-auto">
+          <div className="flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              className={`h-1.5 w-1.5 rounded-full ${
+                source === "live" ? "bg-emerald-500" : "bg-copper"
+              }`}
+            />
             <span className="text-xs uppercase tracking-widest text-white/40">
               Currency
             </span>
@@ -355,7 +363,7 @@ export default function Header() {
               onChange={(e) =>
                 setCurrency(e.target.value as SupportedCurrency)
               }
-              className="bg-transparent border border-white/20 rounded-sm px-2.5 py-1.5 text-sm text-white focus:outline-none"
+              className="bg-transparent border border-white/20 rounded-sm px-3 py-2 text-sm text-white focus:outline-none focus:border-gold"
               aria-label="Display currency"
             >
               {supported.map((c) => (
@@ -365,7 +373,7 @@ export default function Header() {
               ))}
             </select>
           </div>
-        </nav>
+        </div>
 
         <div className="flex shrink-0 flex-wrap items-center justify-center md:justify-start gap-5 px-8 sm:px-10 md:px-14 pb-6 max-w-2xl md:max-w-3xl w-full mx-auto">
           {mobileSocials.map(({ label, href, path }) => (
