@@ -3,7 +3,7 @@ import { client } from "@/lib/sanity.client";
 import { allBooksQuery, allCategoriesQuery } from "@/lib/queries";
 import BooksCatalog from "@/components/BooksCatalog";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export const metadata: Metadata = {
   title: "Shop All Books — Public Speaking, Interviews & MC Titles",

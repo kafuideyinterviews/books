@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import { client } from "@/lib/sanity.client";
 import { allBooksQuery, allCategoriesQuery } from "@/lib/queries";
 import BookCard from "@/components/BookCard";
@@ -8,12 +9,15 @@ import {
   ArrowRightIcon,
   BookOpenIcon,
   BookmarkIcon,
+  MicIcon,
   PenIcon,
+  PodiumIcon,
+  SpeakIcon,
   TruckIcon,
 } from "@/components/icons";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_KEYWORDS } from "@/lib/seo";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export const metadata: Metadata = {
   title: { absolute: DEFAULT_TITLE },
@@ -98,15 +102,31 @@ const faqs = [
   },
 ];
 
+const categoryIcons: Record<
+  string,
+  ComponentType<{ size?: number; strokeWidth?: number; className?: string }>
+> = {
+  interviews: MicIcon,
+  mc: PodiumIcon,
+  "public-speaking": SpeakIcon,
+};
+
+function categoryIconFor(slug?: string, title?: string) {
+  const key = (slug || title || "")
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-");
+  return categoryIcons[key] || BookOpenIcon;
+}
+
 export default async function HomePage() {
   const [books, categories] = await Promise.all([
     client.fetch(allBooksQuery).catch(() => []),
     client.fetch(allCategoriesQuery).catch(() => []),
   ]);
 
-  const featured = (books as any[]).filter((b) => b.featured);
-  const featuredBooks =
-    featured.length > 0 ? featured : (books as any[]).slice(0, 8);
+  // Query already orders featured first, then newest — show a mix, not featured-only
+  const featuredBooks = (books as any[]).slice(0, 8);
 
   return (
     <>
@@ -157,31 +177,37 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {categories.slice(0, 8).map((c: any, i: number) => (
-              <Link
-                key={c._id}
-                href={`/books?cat=${encodeURIComponent(c.slug || c.title)}`}
-                className={`group relative overflow-hidden rounded-xl border border-line p-6 h-32 flex items-end ${
-                  i % 3 === 0
-                    ? "bg-ivory"
-                    : i % 3 === 1
-                    ? "bg-copper/10"
-                    : "bg-sand/25"
-                } hover:shadow-cardHover transition`}
-              >
-                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-copper/20 group-hover:bg-copper/35 transition" />
-                <div className="relative">
-                  <p className="font-display text-lg text-ink group-hover:text-copper-dark transition">
-                    {c.title}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-xs text-ink-muted">
-                    Shop titles
-                    <ArrowRightIcon size={12} />
-                  </span>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {categories.map((c: any, i: number) => {
+              const Icon = categoryIconFor(c.slug, c.title);
+              return (
+                <Link
+                  key={c._id}
+                  href={`/books?cat=${encodeURIComponent(c.slug || c.title)}`}
+                  className={`group relative overflow-hidden rounded-xl border border-line p-6 min-h-[148px] flex flex-col justify-between ${
+                    i % 3 === 0
+                      ? "bg-ivory"
+                      : i % 3 === 1
+                      ? "bg-copper/10"
+                      : "bg-sand/25"
+                  } hover:shadow-cardHover transition`}
+                >
+                  <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-copper/20 group-hover:bg-copper/35 transition" />
+                  <div className="relative text-bronze-dark">
+                    <Icon size={32} strokeWidth={1.7} />
+                  </div>
+                  <div className="relative mt-6">
+                    <p className="font-display text-xl text-ink group-hover:text-copper-dark transition">
+                      {c.title}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-ink-muted mt-1">
+                      Shop titles
+                      <ArrowRightIcon size={13} />
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       )}

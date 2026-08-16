@@ -168,6 +168,80 @@ export function PlayIcon(props: IconProps) {
   );
 }
 
+/** Interview / conversation mic */
+export function MicIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M12 2a3.5 3.5 0 0 0-3.5 3.5v6a3.5 3.5 0 1 0 7 0v-6A3.5 3.5 0 0 0 12 2Z"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5M9 21.5h6"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/** Public speaking / address */
+export function SpeakIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M4 9.5c0-2.5 2.5-4.5 5.5-4.5H12v10H9.5C6.5 15 4 13 4 10.5v-1Z"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 5h1.5C17 5 20 7.2 20 10s-3 5-6.5 5H12"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.5 15.5 7 21.5M15.5 15.5 17 21.5"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/** MC / event host — podium */
+export function PodiumIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path
+        d="M8 10.5h8l1.5 9.5H6.5L8 10.5Z"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.5 10.5V8.2A2.5 2.5 0 0 1 12 5.7a2.5 2.5 0 0 1 2.5 2.5v2.3"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+      />
+      <path
+        d="M7 14.5h10"
+        stroke="currentColor"
+        strokeWidth={props.strokeWidth ?? 1.75}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function ShieldIcon(props: IconProps) {
   return (
     <svg {...base(props)}>

@@ -9,7 +9,8 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  // Fresh reads so newly published books appear without long CDN lag
+  useCdn: false,
 });
 
 const builder = imageUrlBuilder(client);
