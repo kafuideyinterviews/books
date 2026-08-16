@@ -62,7 +62,8 @@ const socialLinks = [
   {
     label: "Patreon",
     href: "https://www.patreon.com/kafuidey",
-    path: "M15.386.524c-4.313 0-6.07 3.041-7.211 5.55C7.07 8.496 6.508 10 4.733 10H0v13.476h4.66V24h10.09c5.856 0 9.25-4.19 9.25-9.402C24 4.493 20.778.524 15.386.524z",
+    // Classic Patreon mark: vertical stem + circle
+    path: "M4 3.5h3.2v17H4V3.5zm10.3.2a5.7 5.7 0 1 1 0 11.4 5.7 5.7 0 0 1 0-11.4z",
   },
 ];
 
