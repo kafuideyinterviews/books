@@ -216,12 +216,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 pb-2">
-          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between pr-14 sm:pr-16">
-            <p className="text-center sm:text-left text-sm text-white/30">
+        <div className="mt-12 border-t border-white/10 pt-8 pb-8">
+          <div className="flex flex-col items-center justify-center gap-2 text-center">
+            <p className="text-sm text-white/30">
               &copy; {year} Kafui Dey Books. All rights reserved.
             </p>
-            <p className="text-center sm:text-right text-sm text-white/50">
+            <p className="text-sm text-white/50">
               Website Developed &amp; Designed by{" "}
               <a
                 href="https://celestialwebsolutions.net/portfolio/kafui-dey-books"
