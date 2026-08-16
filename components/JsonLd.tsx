@@ -4,6 +4,7 @@ import {
   SITE_URL,
   SOCIAL,
 } from "@/lib/seo";
+import { bookAuthors } from "@/lib/authors";
 
 /** Sitewide JSON-LD for Google rich results */
 export default function JsonLd() {
@@ -81,13 +82,21 @@ export function BookJsonLd({
   slug,
   image,
   priceGhs,
+  authors,
 }: {
   title: string;
   description?: string;
   slug: string;
   image?: string;
   priceGhs?: number;
+  authors?: string[];
 }) {
+  const names = bookAuthors(authors);
+  const authorSchema =
+    names.length === 1
+      ? { "@type": "Person", name: names[0] }
+      : names.map((name) => ({ "@type": "Person", name }));
+
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Book",
@@ -95,10 +104,7 @@ export function BookJsonLd({
     description: description || undefined,
     url: `${SITE_URL}/books/${slug}`,
     image: image || undefined,
-    author: {
-      "@type": "Person",
-      name: "Kafui Dey",
-    },
+    author: authorSchema,
     publisher: {
       "@type": "Person",
       name: "Kafui Dey",

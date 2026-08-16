@@ -7,6 +7,7 @@ import Price from "@/components/Price";
 import { ExternalLinkIcon, OpenBookVector } from "@/components/icons";
 import { BookJsonLd } from "@/components/JsonLd";
 import { SITE_NAME } from "@/lib/seo";
+import { bookAuthors, formatAuthorList } from "@/lib/authors";
 
 export const revalidate = 60;
 
@@ -29,15 +30,17 @@ export async function generateMetadata({
     };
   }
 
+  const authors = bookAuthors(book.authors);
+  const authorLine = formatAuthorList(authors);
   const description =
     book.blurb?.slice(0, 160) ||
-    `Buy “${book.title}” by Kafui Dey — available direct, on Selar, or Amazon.`;
+    `Buy “${book.title}” by ${authorLine} — available direct, on Selar, or Amazon.`;
   const image = book.cover
     ? urlFor(book.cover).width(1200).height(630).url()
     : "/icons/icon-512.png";
   const keywords = [
     book.title,
-    "Kafui Dey",
+    ...authors,
     "buy book Ghana",
     ...(book.categories || []),
     "signed books",
@@ -46,7 +49,7 @@ export async function generateMetadata({
   ];
 
   return {
-    title: `${book.title} by Kafui Dey`,
+    title: `${book.title} by ${authorLine}`,
     description,
     keywords,
     alternates: { canonical: `/books/${slug}` },
@@ -101,6 +104,7 @@ export default async function BookDetailPage({ params }: PageProps) {
         slug={book.slug}
         image={coverUrl}
         priceGhs={book.priceGhs}
+        authors={book.authors}
       />
 
       <div className="container-narrow pt-6 text-xs text-ink-muted flex items-center gap-2">
@@ -150,7 +154,10 @@ export default async function BookDetailPage({ params }: PageProps) {
           </h1>
 
           <p className="text-sm text-ink-muted mb-6">
-            by <span className="text-ink font-medium">Kafui Dey</span>
+            by{" "}
+            <span className="text-ink font-medium">
+              {formatAuthorList(book.authors)}
+            </span>
           </p>
 
           {typeof book.priceGhs === "number" ? (

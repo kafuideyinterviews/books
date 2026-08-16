@@ -2,11 +2,14 @@ import Link from "next/link";
 import { urlFor } from "@/lib/sanity.client";
 import Price from "@/components/Price";
 import { OpenBookVector } from "@/components/icons";
+import { formatByline } from "@/lib/authors";
+import { localCoverForBook } from "@/lib/covers";
 
 type Book = {
   _id: string;
   title: string;
   slug: string;
+  authors?: string[];
   cover?: any;
   categories?: string[];
   priceGhs?: number;
@@ -20,17 +23,20 @@ export default function BookCard({ book }: { book: Book }) {
     typeof book.priceGhs === "number" && Number.isFinite(book.priceGhs);
   const hasLabel =
     typeof book.priceDisplay === "string" && book.priceDisplay.length > 0;
+  const coverUrl = book.cover
+    ? urlFor(book.cover).width(500).height(680).url()
+    : localCoverForBook(book.slug, book.title);
 
   return (
     <article className="group bg-white border border-line overflow-hidden hover:shadow-card transition-shadow">
       <Link href={`/books/${book.slug}`} className="block">
-        <div className="relative aspect-[3/4] bg-[#f5f5f5] overflow-hidden">
-          {book.cover ? (
+        <div className="relative aspect-[2/3] bg-[#f3eee6] overflow-hidden">
+          {coverUrl ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
-              src={urlFor(book.cover).width(500).height(680).url()}
+              src={coverUrl}
               alt={book.title}
-              className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+              className="h-full w-full object-contain p-1.5 group-hover:scale-[1.02] transition-transform duration-500"
             />
           ) : (
             <div className="h-full w-full flex items-center justify-center bg-gradient-to-b from-[#fafafa] to-[#eee]">
@@ -54,7 +60,7 @@ export default function BookCard({ book }: { book: Book }) {
             {book.title}
           </h3>
         </Link>
-        <p className="text-xs text-ink-muted mt-1">by Kafui Dey</p>
+        <p className="text-xs text-ink-muted mt-1">{formatByline(book.authors)}</p>
 
         <div className="mt-3 flex items-end justify-between gap-2">
           <div>

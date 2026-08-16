@@ -8,6 +8,7 @@ export type CatalogBook = {
   _id: string;
   title: string;
   slug: string;
+  authors?: string[];
   cover?: any;
   categories?: string[];
   categorySlugs?: string[];
@@ -102,6 +103,7 @@ export default function BooksCatalog({
         (b) =>
           b.title.toLowerCase().includes(query) ||
           b.blurb?.toLowerCase().includes(query) ||
+          b.authors?.some((a) => a.toLowerCase().includes(query)) ||
           b.categories?.some((c) => c.toLowerCase().includes(query))
       );
     }

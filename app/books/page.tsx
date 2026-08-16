@@ -46,11 +46,12 @@ export default async function BooksPage({
             The Collection
           </p>
           <h1 className="font-display text-4xl sm:text-5xl text-ink mb-3">
-            All books by Kafui Dey
+            All books
           </h1>
           <p className="text-ink-muted max-w-2xl">
-            Buy directly, on Selar, or on Amazon. Or shortlist a title and
-            decide later — no account needed.
+            Titles by Kafui Dey — and co-authors where noted. Buy directly, on
+            Selar, or on Amazon. Or shortlist a title and decide later — no
+            account needed.
           </p>
         </div>
       </div>

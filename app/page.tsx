@@ -1,20 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { ComponentType } from "react";
+import Image from "next/image";
 import { client } from "@/lib/sanity.client";
-import { allBooksQuery, allCategoriesQuery } from "@/lib/queries";
+import { allBooksQuery } from "@/lib/queries";
 import BookCard from "@/components/BookCard";
 import HeroSlider from "@/components/HeroSlider";
 import {
   ArrowRightIcon,
   BookOpenIcon,
   BookmarkIcon,
-  MicIcon,
   PenIcon,
-  PodiumIcon,
-  SpeakIcon,
   TruckIcon,
 } from "@/components/icons";
+import { BROWSE_CATEGORIES } from "@/lib/covers";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_KEYWORDS } from "@/lib/seo";
 
 export const revalidate = 30;
@@ -102,28 +100,8 @@ const faqs = [
   },
 ];
 
-const categoryIcons: Record<
-  string,
-  ComponentType<{ size?: number; strokeWidth?: number; className?: string }>
-> = {
-  interviews: MicIcon,
-  mc: PodiumIcon,
-  "public-speaking": SpeakIcon,
-};
-
-function categoryIconFor(slug?: string, title?: string) {
-  const key = (slug || title || "")
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-");
-  return categoryIcons[key] || BookOpenIcon;
-}
-
 export default async function HomePage() {
-  const [books, categories] = await Promise.all([
-    client.fetch(allBooksQuery).catch(() => []),
-    client.fetch(allCategoriesQuery).catch(() => []),
-  ]);
+  const books = await client.fetch(allBooksQuery).catch(() => []);
 
   // Query already orders featured first, then newest — show a mix, not featured-only
   const featuredBooks = (books as any[]).slice(0, 8);
@@ -156,61 +134,59 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Categories tiles */}
-      {categories.length > 0 && (
-        <section className="container-narrow py-14">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="text-[11px] tracking-[0.28em] uppercase text-copper-dark font-semibold mb-2">
-                Browse
-              </p>
-              <h2 className="font-display text-3xl sm:text-4xl text-ink">
-                Explore by category
-              </h2>
-            </div>
-            <Link
-              href="/books"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm text-copper-dark hover:underline"
-            >
-              View all books
-              <ArrowRightIcon size={14} />
-            </Link>
+      {/* Categories — six Kafui Dey browse cards with cover art */}
+      <section className="container-narrow py-14">
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <p className="text-[11px] tracking-[0.28em] uppercase text-copper-dark font-semibold mb-2">
+              Browse
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl text-ink">
+              Explore by category
+            </h2>
           </div>
+          <Link
+            href="/books"
+            className="hidden sm:inline-flex items-center gap-1.5 text-sm text-copper-dark hover:underline"
+          >
+            View all books
+            <ArrowRightIcon size={14} />
+          </Link>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {categories.map((c: any, i: number) => {
-              const Icon = categoryIconFor(c.slug, c.title);
-              return (
-                <Link
-                  key={c._id}
-                  href={`/books?cat=${encodeURIComponent(c.slug || c.title)}`}
-                  className={`group relative overflow-hidden rounded-xl border border-line p-6 min-h-[148px] flex flex-col justify-between ${
-                    i % 3 === 0
-                      ? "bg-ivory"
-                      : i % 3 === 1
-                      ? "bg-copper/10"
-                      : "bg-sand/25"
-                  } hover:shadow-cardHover transition`}
-                >
-                  <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-copper/20 group-hover:bg-copper/35 transition" />
-                  <div className="relative text-bronze-dark">
-                    <Icon size={32} strokeWidth={1.7} />
-                  </div>
-                  <div className="relative mt-6">
-                    <p className="font-display text-xl text-ink group-hover:text-copper-dark transition">
-                      {c.title}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-ink-muted mt-1">
-                      Shop titles
-                      <ArrowRightIcon size={13} />
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+          {BROWSE_CATEGORIES.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/books?cat=${encodeURIComponent(c.slug)}`}
+              className="group flex flex-col bg-white border border-line overflow-hidden hover:shadow-cardHover transition"
+            >
+              <div className="relative aspect-[2/3] bg-[#f3eee6] overflow-hidden">
+                <Image
+                  src={c.image}
+                  alt={c.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className={
+                    c.contain
+                      ? "object-contain p-2 sm:p-3 group-hover:scale-[1.02] transition-transform duration-500"
+                      : "object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                  }
+                />
+              </div>
+              <div className="p-3 sm:p-4">
+                <p className="font-display text-lg sm:text-xl text-ink group-hover:text-copper-dark transition">
+                  {c.title}
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-sm text-ink-muted mt-0.5">
+                  Shop titles
+                  <ArrowRightIcon size={13} />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Featured books — main homepage content */}
       <section className="bg-white border-y border-line">

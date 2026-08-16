@@ -8,6 +8,9 @@ const shopLinks = [
   { label: "Public Speaking", href: "/books?cat=public-speaking" },
   { label: "Interviews", href: "/books?cat=interviews" },
   { label: "MC", href: "/books?cat=mc" },
+  { label: "Stage", href: "/books?cat=stage" },
+  { label: "Career", href: "/books?cat=career" },
+  { label: "Language", href: "/books?cat=language" },
   { label: "Saved for later", href: "/saved" },
 ];
 

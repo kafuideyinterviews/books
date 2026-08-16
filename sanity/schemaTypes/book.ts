@@ -19,6 +19,15 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "authors",
+      title: "Authors",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "List every author in credit order. Leave empty to show Kafui Dey only. For co-authored titles, add each name (e.g. Victor Kwasi Dey, then Kafui Dey).",
+      initialValue: ["Kafui Dey"],
+    }),
+    defineField({
       name: "cover",
       title: "Cover image",
       type: "image",
@@ -76,6 +85,19 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { title: "title", media: "cover" },
+    select: {
+      title: "title",
+      media: "cover",
+      authors: "authors",
+    },
+    prepare({ title, media, authors }) {
+      const names = (authors || []).filter(Boolean);
+      return {
+        title,
+        media,
+        subtitle:
+          names.length > 0 ? names.join(" · ") : "Kafui Dey",
+      };
+    },
   },
 });

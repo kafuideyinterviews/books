@@ -97,3 +97,7 @@ h4,
 .hero-book-float-delayed {
   animation: hero-book-float 5.5s ease-in-out 0.8s infinite;
 }
+
+.hero-book-float-mid {
+  animation: hero-book-float 5.5s ease-in-out 0.4s infinite;
+}

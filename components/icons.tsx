@@ -3,9 +3,11 @@ import {
   ArrowRight,
   Bookmark,
   BookOpen,
+  Briefcase,
   ChevronDown,
   ExternalLink,
   Globe,
+  Languages,
   Mail,
   Megaphone,
   Mic,
@@ -14,6 +16,7 @@ import {
   Quote,
   Search,
   Shield,
+  Sparkles,
   Star,
   Store,
   Truck,
@@ -97,6 +100,18 @@ export function SpeakIcon(props: IconProps) {
 
 export function PodiumIcon(props: IconProps) {
   return <MicVocal {...lucideProps(props)} />;
+}
+
+export function StageIcon(props: IconProps) {
+  return <Sparkles {...lucideProps(props)} />;
+}
+
+export function CareerIcon(props: IconProps) {
+  return <Briefcase {...lucideProps(props)} />;
+}
+
+export function LanguageIcon(props: IconProps) {
+  return <Languages {...lucideProps(props)} />;
 }
 
 export function ShieldIcon(props: IconProps) {
